@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untukmu Sayang 💖</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 90%;
+            padding: 20px;
+        }
+        h1, p {
+            animation: fadeIn 2s ease-in-out;
+        }
+        .button {
+            background: white;
+            color: #ff758c;
+            border: none;
+            padding: 15px 30px;
+            margin-top: 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #ffe0e0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Masukkan Namamu 💖</h1>
+        <input type="text" id="nameInput" placeholder="Namamu" style="padding: 10px; font-size: 1em; border-radius: 10px; border: none;">
+        <button class="button" onclick="startGreeting()">Mulai ➡️</button>
+        <div id="welcomeMessage" class="hidden">
+            <h1 id="greeting"></h1>
+            <img id="welcomeImage" src="https://i.ibb.co.com/GQFw9sjN/d186d40026c605b289fa1b062d112df4.gif alt="Welcome Image" width="150">
+        </div>
+        <div id="messageContainer" class="hidden">
+            <img id="finalImage" class="hidden" src="https://i.ibb.co.com/n8PzP4MV/a85cfa512f05501f4df90fe1967de58e.gif" alt="Final Image" width="150">
+            <p id="message"></p>
+            <button class="button" onclick="nextMessage()">Lanjut ➡️</button>
+        </div>
+    </div>
+    
+    <script>
+        let messages = [
+            "Aku nggak nyangka bisa dapetin kamu... Awalnya aku ragu, tapi ternyata kamu adalah anugerah terindah dalam hidupku.",
+            "Aku bersyukur setiap hari karena kamu ada dalam hidupku. Terima kasih sudah mau menerima aku apa adanya. 🥰",
+            "Tetap semangat belajar ya sayang! Aku yakin kamu bisa mencapai semua impianmu. Aku selalu di sini mendukungmu. 📚✨",
+            "Jangan lupa jaga kesehatan, makan yang cukup, istirahat yang cukup. Aku nggak mau lihat kamu sakit! 🥺💖",
+            "Aku bakalan berusaha di fase pdkt ini. Semoga makin deket ya ampe jadian. Dan aku bakalan berusaha jadi cowok yang baik. 💪💕",
+            "Apapun yang terjadi, aku selalu ada untukmu. Kamu hebat dan luar biasa. Teruslah bersinar, Bocah^^! 🌟💑",
+            "Kalau Ada Apa Apa Bilang👊!!! ❤️"
+        ];
+        let index = 0;
+        let userName = "";
+
+        function startGreeting() {
+            userName = document.getElementById("nameInput").value;
+            if (userName.trim() === "") {
+                alert("Masukkan namamu dulu ya!");
+                return;
+            }
+            document.querySelector("h1").classList.add("hidden");
+            document.getElementById("nameInput").classList.add("hidden");
+            document.querySelector(".button").classList.add("hidden");
+           
+            document.getElementById("greeting").innerText = "Hai " + userName + " 💕 Senang kamu bisa berada di sini!";
+            document.getElementById("welcomeMessage").classList.remove("hidden");
+            
+            setTimeout(() => {
+                document.getElementById("welcomeMessage").classList.add("hidden");
+                document.getElementById("message").innerText = messages[index];
+                document.getElementById("messageContainer").classList.remove("hidden");
+            }, 3000);
+        }
+
+        function nextMessage() {
+            index++;
+            if (index < messages.length) {
+                document.getElementById("message").innerText = messages[index];
+            } else {
+                document.getElementById("message").innerText = "Aku akan selalu di sisimu dan tumbuh bersamamu, " + userName + "! 💖";
+                document.querySelector("#messageContainer .button").classList.add("hidden");
+                document.getElementById("finalImage").classList.remove("hidden");
+            }
+        }
+    </script>
+</body>
+</html>
